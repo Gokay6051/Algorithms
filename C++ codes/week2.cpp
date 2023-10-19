@@ -14,9 +14,22 @@ class LinkedList{
 	private:
 		Node *head;
 		
+		void ReversePrint(Node *p) {
+			if(p == NULL){
+				return;
+			}
+			
+			if(p->next != NULL) {
+				ReversePrint(p->next);
+			}
+			cout << p->data << " ";
+		}
+		
 	public:
+		//Constructor
 		LinkedList(): head(NULL) {}
 		
+		//Append a new Node
 		void Append(int num) {
 			if(head == NULL) {
 				head = new Node(num);
@@ -32,6 +45,7 @@ class LinkedList{
 			}
 		}
 		
+		//Print list datas
 		void PrintList() {
 			Node *p = head;
 			
@@ -42,6 +56,7 @@ class LinkedList{
 			cout << endl;
 		}
 		
+		//Ex: 1-1-5-6-6-6-7-8-7-7 ----> 1-5-6-7-8-7
 		void Remove() {
 			Node *p, *w;
 			
@@ -64,6 +79,7 @@ class LinkedList{
 			}
 		}
 		
+		//Ex: 0-0-1-0-1-0-0-1-0-0 ----> 0-0-0-0-0-0-0-0-1-1-1
 		void Rearrange() {
 			Node *p, *w;
 			
@@ -83,60 +99,27 @@ class LinkedList{
 				} 
 			}
 		}
+		
+		//Ex: 1-7-6-5-4-7-7 ----> 7-7-4-5-6-7-1
+		void ReversePrint() {
+			ReversePrint(this->head);
+		}
 };
 
 int main() {
 	LinkedList myList;
-	/*
-	myList.Append(1);
-	myList.Append(1);
-	myList.Append(1);
+	
 	myList.Append(5);
+	myList.Append(4);
+	myList.Append(3);
 	myList.Append(2);
-	myList.Append(5);
-	myList.Append(2);
-	myList.Append(5);
-	myList.Append(5);
-	myList.Append(5);
-	myList.Append(4);
-	myList.Append(4);
 	myList.Append(1);
-	myList.Append(4);
-	myList.Append(4);
-	myList.Append(5);
-	myList.Append(5);
-	myList.Append(5);
-	myList.Append(1);
-	myList.Append(6);
-	myList.Append(6);
 	
-	//Original list
-	myList.PrintList();
-	
-	//List after Remove function
-	myList.Remove();
-	myList.PrintList();
-	*/
-	
-	myList.Append(0);
-	myList.Append(0);
-	myList.Append(0);
-	myList.Append(1);
-	myList.Append(0);
-	myList.Append(1);
-	myList.Append(1);
-	myList.Append(0);
-	myList.Append(0);
-	myList.Append(1);
-	myList.Append(1);
-
 	
 	//Original list
 	myList.PrintList();
 	//List after Rearrange function
-	myList.Rearrange();
-	myList.PrintList();
-	
+	myList.ReversePrint();
 	
 	return 0;
 }
